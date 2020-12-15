@@ -1,13 +1,12 @@
 package simple
 
 import (
-	"strconv"
 	"strings"
 )
 
 func wordPattern(pattern string, s string) bool {
-	m := make(map[uint8]string)
-	m1 := make(map[string]string)
+	m := make(map[uint8]int)
+	m1 := make(map[string]int)
 
 	n := len(pattern)
 	split := strings.Split(s, " ")
@@ -15,8 +14,8 @@ func wordPattern(pattern string, s string) bool {
 		return false
 	}
 	for i := 0; i < n; i++ {
-		m[pattern[i]] += strconv.Itoa(i)
-		m1[split[i]] += strconv.Itoa(i)
+		m[pattern[i]] += i
+		m1[split[i]] += i
 	}
 
 	for i := 0; i < n; i++ {
