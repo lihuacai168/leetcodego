@@ -5,21 +5,21 @@ import (
 )
 
 func wordPattern(pattern string, s string) bool {
-	m := make(map[uint8]int)
-	m1 := make(map[string]int)
+	patterMap := make(map[uint8]int)
+	wordsMap := make(map[string]int)
 
 	n := len(pattern)
-	split := strings.Split(s, " ")
-	if n != len(split) {
+	words := strings.Split(s, " ")
+	if n != len(words) {
 		return false
 	}
 	for i := 0; i < n; i++ {
-		m[pattern[i]] += i
-		m1[split[i]] += i
+		patterMap[pattern[i]] += i
+		wordsMap[words[i]] += i
 	}
 
 	for i := 0; i < n; i++ {
-		if m[pattern[i]] != m1[split[i]] {
+		if patterMap[pattern[i]] != wordsMap[words[i]] {
 			return false
 		}
 	}
