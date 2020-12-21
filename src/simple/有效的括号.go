@@ -1,13 +1,13 @@
 package simple
 
-func isLeft(i int32) bool {
+func isLeft(i byte) bool {
 	if i == '(' || i == '[' || i == '{' {
 		return true
 	}
 	return false
 }
 
-func isMatch(left, right int32) bool {
+func isMatch(left, right byte) bool {
 	if left == '(' && right == ')' {
 		return true
 	}
@@ -22,10 +22,10 @@ func isMatch(left, right int32) bool {
 
 func isValid(s string) bool {
 	// 只存左括号的栈
-	var stack []int32
+	var stack []byte
 	for _, i := range s {
-		if isLeft(i) {
-			stack = append(stack, i)
+		if isLeft(byte(i)) {
+			stack = append(stack, byte(i))
 		} else {
 			n := len(stack)
 			// 栈为空，遇到右括号，肯定为false
@@ -34,7 +34,7 @@ func isValid(s string) bool {
 			}
 			stackTop := stack[n-1]
 			// 栈顶的左括号是否和当前的右括号匹配
-			if isMatch(stackTop, i) {
+			if isMatch(stackTop, byte(i)) {
 				// 左右括号匹配，然后弹栈
 				stack = stack[:n-1]
 			} else {
