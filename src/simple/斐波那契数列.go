@@ -28,13 +28,30 @@ package simple
 //链接：https://leetcode-cn.com/problems/fibonacci-number
 //著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 // 0,1,1,2,3,5
+//func fib(n int) int {
+//	a, b := 0, 1
+//	if n < 2 {
+//		return n
+//	}
+//	for i := 2; i < n; i++ {
+//		a, b = b, a+b
+//	}
+//	return a + b
+//}
+
+// 动态规划
 func fib(n int) int {
-	a, b := 0, 1
 	if n < 2 {
 		return n
 	}
-	for i := 2; i < n; i++ {
-		a, b = b, a+b
+	// 初始化
+	pre, cur := 0, 1
+	ans := 0
+	for i := 2; i <= n; i++ {
+		// 动态方程
+		ans = pre + cur
+		pre = cur
+		cur = ans
 	}
-	return a + b
+	return ans
 }
